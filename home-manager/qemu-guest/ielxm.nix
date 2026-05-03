@@ -19,22 +19,19 @@
     force = true;
   };
 
-  home.file.".ssh/authorized_keys".text = ''
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf6wRDrKuCdTl4tsl36EiayXTmmTgSAbUVcZ1xN1U9v ielxm@nixos
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK8sKRLFw6ykHKTwEidJ2GIYmYz2LmuetnBeaXPqZWtK ielxm@nixos
-  '';
-
   home.file.".scripts" = {
     source = "${inputs.db}/scripts";
     force = true;
   };
-
 
   home.packages = with pkgs; [
     kitty
     mako
     bemenu   
     firefox
+    wl-clipboard
+    grim
+    slurp
   ];
 
   xdg.portal = {
@@ -89,7 +86,6 @@
       ssh  = "TERM=xterm-256color ssh";
     };
   };
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

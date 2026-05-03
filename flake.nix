@@ -5,30 +5,18 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # 25.11
     home-manager.url = "github:nix-community/home-manager/release-25.11"; # 25.11
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.url = "github:ryantm/agenix";
+    #agenix.url = "github:ryantm/agenix";
 
     db = {
       url = "git+ssh://git@github.com/ielxm/database.git";
       flake = false;
     };
 
-    #dotfiles = {
-    #  url = "git+ssh://git@github.com/ielxm/dotfiles.git";
-    #  flake = false;
-    #};
-    #scripts = {
-    #  url = "git+ssh://git@github.com/ielxm/scripts.git";
-    #  flake = false;
-    #};
-    #secrets = {
-    #  url = "git+ssh://git@github.com/ielxm/secrets.git";
-    #  flake = false;
-    #};
-
   };
 
   outputs =
-    inputs@{ nixpkgs, agenix, home-manager, ... }:
+    #inputs@{ nixpkgs, agenix, home-manager, ... }:
+    inputs@{ nixpkgs, home-manager, ... }:
     {
       nixosConfigurations = {
 
@@ -40,7 +28,7 @@
           modules = [
             ./modules/base.nix
 
-            agenix.nixosModules.default
+            #agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -68,7 +56,7 @@
             ./machines/qemu-guest/packages.nix
             ./machines/qemu-guest/services.nix
 
-            agenix.nixosModules.default
+            #agenix.nixosModules.default
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
