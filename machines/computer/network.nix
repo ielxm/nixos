@@ -1,7 +1,7 @@
 {
   networking.nameservers = [ "1.1.1.1#cloudflare-dns.com" "1.0.0.1#cloudflare-dns.com" "2606:4700:4700::1111#cloudflare-dns.com" "2606:4700:4700::1001#cloudflare-dns.com" ]; 
 
-  # systemd-resolved
+  # Enable & setup systemd-resolved.
   services.resolved = {
     enable = true;
     dnssec = "allow-downgrade";
@@ -9,12 +9,12 @@
     dnsovertls = "opportunistic";
   };
 
-   # NTP servers (defaults + 0.pool.ntp.org)
-  networking.timeServers = options.networking.timeServers.default ++ [ "0.pool.ntp.org" ];
-
   networking.hostName = "nixos"; # Define your hostname.
+  
+  # Disable dhcpcd.
   networking.useDHCP = false;
 
+  # Enable systemd-networkd.
   systemd.network.enable = true;
 
   systemd.network.networks."10-lan" = {
@@ -30,9 +30,9 @@
     enable = true;
     allowPing = true;
     logRefusedConnections = true;
-    checkReversePath = false; # for libvi
-    allowedTCPPorts = [ 22 ];
-    #allowedUDPPorts = [ ... ];
+    checkReversePath = false;
   };
-  networking.nftables.enable = true; # replace iptables with nftables
+
+  # Replace iptables firewall with nftables.
+  networking.nftables.enable = true;
 }
