@@ -28,8 +28,8 @@
 
             ./machines/computer/console.nix
             ./machines/computer/network.nix
-            ./machines/computer/services.nix
             ./machines/computer/users.nix
+            ./machines/computer/system-services.nix
             ./machines/computer/system-packages.nix
 
             home-manager.nixosModules.home-manager

@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-
-  # You can't set GTK themes using Home Manager without that option
-  programs.dconf.enable = true;
- 
   environment.systemPackages = with pkgs; [
     helix
     tree
@@ -12,4 +8,5 @@
     yazi
     fastfetch
   ];
+  programs.dconf.enable = true;
 }

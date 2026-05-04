@@ -1,11 +1,9 @@
 { pkgs, ... }:
 
 {
-  
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ielxm = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ];
     packages = with pkgs; [];
   };
 }
