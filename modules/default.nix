@@ -1,31 +1,22 @@
 {
-
-  imports = [
-    ./boot.nix
-    ./home-manager.nix
-  ];
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.editor = false; # prevent user from entering systemd-boot editor
+
+  # Limit amount of system backups.
+  boot.loader.systemd-boot.configurationLimit = 9;
+
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   security.polkit.enable = true;
 
@@ -34,8 +25,8 @@
     EDITOR = "hx";
   };
 
-  # DO NOT CHANGE OPTION BELOW !!!
-  # -------------->
+  # Home Manager xdg-desktop-portal workaround
+  environment.pathsToLink = [ "share/applications" "/share/xdg-desktop-portal" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

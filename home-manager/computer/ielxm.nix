@@ -4,28 +4,12 @@
   home.username = "ielxm";
   home.homeDirectory = "/home/ielxm";
 
-  home.file.".config/sway" = {
-    source = "${inputs.db}/dotfiles/sway";
-    force = true;
-  };
-
-  home.file.".config/mako" = {
-    source = "${inputs.db}/dotfiles/mako";
-    force = true;
-  };
-
-  home.file.".config/kitty" = {
-    source = "${inputs.db}/dotfiles/kitty";
-    force = true;
-  };
-
-  home.file.".scripts" = {
-    source = "${inputs.db}/scripts";
-    force = true;
-  };
+  #home.file.".config/sway" = {
+  #  source = "${inputs.db}/dotfiles/sway";
+  #  force = true;
+  #};
 
   home.packages = with pkgs; [
-    kitty
     mako
     bemenu   
     firefox
@@ -34,23 +18,11 @@
     slurp
   ];
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    config = {
-      sway = {
-        default = [ "gtk" ];
-      };
-    };
-  };
 
-  wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
-  };
+  services.mako.enable = true;
 
+  programs.kitty.enable = true;
+  
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
@@ -85,6 +57,27 @@
       grep = "grep --color=auto";
       ssh  = "TERM=xterm-256color ssh";
     };
+  };
+
+
+
+
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      sway = {
+        default = [ "gtk" ];
+      };
+    };
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
   };
 
   # This value determines the Home Manager release that your

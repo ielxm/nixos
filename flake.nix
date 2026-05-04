@@ -23,10 +23,17 @@
         # TODO: replace it
         computer = nixpkgs.lib.nixosSystem {
 
+          specialArgs = { inherit inputs; };
           system = "x86_64-linux";
 
           modules = [
-            ./modules/base.nix
+            ./modules/default.nix
+
+            ./machines/computer/console.nix
+            ./machines/computer/network.nix
+            ./machines/computer/services.nix
+            ./machines/computer/users.nix
+            ./machines/computer/system-packages.nix
 
             #agenix.nixosModules.default
             home-manager.nixosModules.home-manager
@@ -40,35 +47,6 @@
           ];
         };
 
-        qemu-guest = nixpkgs.lib.nixosSystem {
-
-          system = "x86_64-linux";
-
-          specialArgs = { inherit inputs; };
-
-          modules = [
-            ./modules/base.nix
-
-            ./machines/qemu-guest/hardware-configuration.nix
-            ./machines/qemu-guest/console.nix
-            ./machines/qemu-guest/network-configuration.nix
-            ./machines/qemu-guest/users.nix
-            ./machines/qemu-guest/packages.nix
-            ./machines/qemu-guest/services.nix
-
-            #agenix.nixosModules.default
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-              home-manager.users.root  = ./home-manager/qemu-guest/root.nix;
-              home-manager.users.ielxm = ./home-manager/qemu-guest/ielxm.nix;
-            }
-          ];
-        };
-       
       };
     };
 }
