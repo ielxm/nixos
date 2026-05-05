@@ -37,11 +37,12 @@ in {
       name = builtins.head fonts_monospaced; # Load 1st font from List.
       size = 13.0;
     };
-    extraConfig = ''
-      confirm_os_window_close 0
-      enable_audio_bell no
-    '';
+    settings = {
+      confirm_os_window_close = 0;
+      enable_audio_bell = false;
+    };
   };
+
   programs.firefox = {
     enable = true;
     languagePacks = [ "en-US" ];
@@ -72,6 +73,7 @@ in {
 
     };
   };
+
   home.packages = with pkgs; [
     # Fonts.
     nerd-fonts.adwaita-mono
@@ -81,7 +83,7 @@ in {
     dejavu_fonts
 
     gcr # GNOME Keyring, provides org.gnome.keyring.SystemPrompter
-    xdg-utils # xdg-open
+    xdg-utils # xdg-open (for element-desktop)
 
     # Wayland and related utils.
     grim
@@ -93,11 +95,11 @@ in {
     gamescope
     steam
 
-    # Proprietary general-purpose apps.
+    # Proprietary.
     #obsidian
     #discord
 
-    # FOSS general-purpose apps.
+    # FOSS.
     obs-studio
     mullvad-vpn
     telegram-desktop
@@ -148,12 +150,13 @@ in {
     };
   };
 
-  #xdg.mime = {
-  #  enable = true;
-  #};
-  #xdg.mimeApps = {
-  #  enable = true;
-  #};
+  xdg.mime = {
+    enable = true;
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+  };
 
   xdg.portal = {
     enable = true;
