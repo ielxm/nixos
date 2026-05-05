@@ -1,8 +1,11 @@
+{ pkgs, ... }:
+
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.editor = false; # prevent user from entering systemd-boot editor
+  boot.loader.systemd-boot.editor = false; # prevent user from entering systemd-boot editor.
 
   # Limit amount of system backups.
   boot.loader.systemd-boot.configurationLimit = 9;
@@ -18,14 +21,19 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  security.polkit.enable = true;
 
-  # Environment variables
+  # Environment variables.
   environment.variables = {
     EDITOR = "hx";
   };
 
-  # Home Manager xdg-desktop-portal workaround
+  # Enable polkit.
+  security.polkit.enable = true;
+
+  # Home Manager workaround to make secrets (gcr) work.
+  security.pam.services.login.enableGnomeKeyring = true;
+
+  # Home Manager workaround to make xdg-desktop-portal work.
   environment.pathsToLink = [ "share/applications" "/share/xdg-desktop-portal" ];
 
   # Copy the NixOS configuration file and link it from the resulting system

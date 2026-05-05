@@ -8,5 +8,7 @@
     yazi
     fastfetch
   ];
+
   programs.dconf.enable = true;
+  programs.gamemode.enable = true;
 }

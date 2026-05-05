@@ -5,12 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11"; # 25.11
     home-manager.url = "github:nix-community/home-manager/release-25.11"; # 25.11
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    #db = {
-    #  url = "git+ssh://git@github.com/ielxm/database.git";
-    #  flake = false;
-    #};
-
   };
 
   outputs =
@@ -26,6 +20,9 @@
           modules = [
             ./modules/default.nix
 
+            ./machines/computer/hardware-configuration.nix
+            ./machines/computer/vfio.nix
+            ./machines/computer/nvidia.nix
             ./machines/computer/console.nix
             ./machines/computer/network.nix
             ./machines/computer/users.nix

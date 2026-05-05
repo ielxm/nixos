@@ -4,10 +4,17 @@
   home.username = "root";
   home.homeDirectory = "/root";
 
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "vim_dark_high_contrast";
+    };
+  };
+
   programs.git = {
     enable = true;
     signing = {
-      key = "/root/.ssh/id_ed25519.pub";
+      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
       signByDefault = true;
     };
 

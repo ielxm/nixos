@@ -3,7 +3,7 @@
 {
   users.users.ielxm = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
 }
