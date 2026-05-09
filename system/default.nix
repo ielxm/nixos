@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -26,12 +26,6 @@
   environment.variables = {
     EDITOR = "hx";
   };
-
-  # Enable polkit.
-  security.polkit.enable = true;
-
-  # Home Manager workaround to make secrets (gcr) work.
-  security.pam.services.login.enableGnomeKeyring = true;
 
   # Home Manager workaround to make xdg-desktop-portal work.
   environment.pathsToLink = [ "share/applications" "/share/xdg-desktop-portal" ];

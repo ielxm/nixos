@@ -5,20 +5,34 @@ let
   fonts_sans_serif =  [ "DejaVu Sans" "Noto Sans" ];
   fonts_serif      =  [ "DejaVu Serif" "Noto Serif" ];
 
+  gtk_theme = "";
+  gtk_theme_pkg = "";
+
+  icon_theme = "Adwaita";
+  icon_theme_pkg = "adwaita-icon-theme";
+
+  cursor_theme = "Adwaita";
+
 in {
   home.username = "ielxm";
   home.homeDirectory = "/home/ielxm";
 
-  home.file."${config.xdg.configHome}/electron-flags.conf".text = ''
-    --password-store=gnome-libsecret
-  '';
+  home.pointerCursor = {
+    package = pkgs.${icon_theme_pkg};
+    name = cursor_theme;
+
+    x11 = {
+      enable = true;
+      defaultCursor = cursor_theme;
+    };
+  };
 
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
       monospace =   fonts_monospaced;
       sansSerif =   fonts_sans_serif;
-      serif =       fonts_serif;
+      serif     =   fonts_serif;
     };
   };
 
@@ -28,6 +42,7 @@ in {
     enable = true;
     settings = {
       theme = "vim_dark_high_contrast";
+      editor.soft-wrap.enable = true;
     };
   };
 
@@ -46,19 +61,35 @@ in {
   programs.firefox = {
     enable = true;
     languagePacks = [ "en-US" ];
+
     policies = {
+      AIControls.Default.Value = "blocked";
+      BrowserDataBackup = {
+        AllowBackup = false;
+        AllowRestore = false;
+      };
+      
       AppAutoUpdate                 = false;
       BackgroundAppUpdate           = false;
+
       DisablePocket                 = true;
       DisableTelemetry              = true;
       DisableMasterPasswordCreation = true;
       DisableFirefoxScreenshots     = true;
       DisableFirefoxAccounts        = true;
       DisableFirefoxStudies         = true;
+      DisableProfileImport          = true;
+      DisableSetDesktopBackground   = true;
+      DisableFeedbackCommands       = true;
+      DisableForgetButton           = true;
+
       OfferToSaveLogins             = false;
-      HardwareAcceleration          = false;
+      HardwareAcceleration          = true;
       DontCheckDefaultBrowser       = true;
-      
+      PromptForDownloadLocation     = true;
+      CaptivePortal                 = false;
+      GenerativeAI.Enabled          = false;
+            
       ExtensionSettings = let
         moz = short: "https://addons.mozilla.org/firefox/downloads/latest/${short}/latest.xpi";
       in {
@@ -70,7 +101,6 @@ in {
           updates_disabled  = true;
         };
       };
-
     };
   };
 
@@ -85,6 +115,8 @@ in {
     gcr # GNOME Keyring, provides org.gnome.keyring.SystemPrompter
     xdg-utils # xdg-open (for element-desktop)
 
+    fastfetch
+
     # Wayland and related utils.
     grim
     slurp
@@ -96,7 +128,7 @@ in {
     steam
 
     # Proprietary.
-    #obsidian
+    obsidian
     #discord
 
     # FOSS.
@@ -150,12 +182,13 @@ in {
     };
   };
 
-  xdg.mime = {
+  gtk = {
     enable = true;
-  };
 
-  xdg.mimeApps = {
-    enable = true;
+    iconTheme = {
+      package = pkgs.${icon_theme_pkg};
+      name = icon_theme;
+    };
   };
 
   xdg.portal = {
@@ -200,7 +233,13 @@ in {
       menu = "${pkgs.bemenu}/bin/bemenu-run -b -H 22";
 
       modes = lib.mkForce{};
-      keybindings = lib.mkForce {};
+      bindkeysToCode = true;
+      keybindings = lib.mkForce {
+
+      };
+      
+      focus.wrapping = "workspace";
+        
 
       window = {
         titlebar = true;
@@ -222,6 +261,9 @@ in {
           size = 9.0;
         };
         statusCommand = "${pkgs.i3status}/bin/i3status";
+        extraConfig = ''
+          icon_theme ${icon_theme}
+        '';
       }];
       output = {
         DP-1 = {
@@ -242,16 +284,18 @@ in {
         mainMonitor = "DP-2";
         secondMonitor = "DP-1";
     in ''
+      # TODO: Move all binds to sway.config.keybindings {}
+      # 
       bindsym --to-code ${modifier}+Return exec ${terminal}
       bindsym --to-code ${modifier}+w kill
       bindsym --to-code ${modifier}+Shift+r reload
       bindsym --to-code ${modifier}+Shift+c exec ${pkgs.sway}/bin/swaynag -m "Do you want to kill current Sway session? [Y/n]" -B "Yes" "${pkgs.sway}/bin/swaymsg exit"
       bindsym --to-code ${modifier}+r exec ${menu}
-      bindsym --to-code ${modifier}+f exec ${pkgs.firefox}/bin/firefox
-      bindsym --to-code ${modifier}+x exec ${pkgs.telegram-desktop}/bin/Telegram
-      bindsym --to-code ${modifier}+c exec ${pkgs.element-desktop}/bin/element-desktop
-      bindsym --to-code ${modifier}+s exec ${terminal} ${pkgs.yazi}/bin/yazi
-      bindsym --to-code ${modifier}+o exec ${terminal} ${pkgs.htop}/bin/htop
+      bindsym --to-code ${modifier}+f exec firefox #${pkgs.firefox}/bin/firefox
+      bindsym --to-code ${modifier}+x exec Telegram #${pkgs.telegram-desktop}/bin/Telegram
+      bindsym --to-code ${modifier}+c exec element-desktop #${pkgs.element-desktop}/bin/element-desktop
+      bindsym --to-code ${modifier}+s exec ${terminal} yazi # ${pkgs.yazi}/bin/yazi
+      bindsym --to-code ${modifier}+o exec ${terminal} htop # ${pkgs.htop}/bin/htop
       bindsym --to-code ${modifier}+Shift+s exec ${pkgs.grim}/bin/grim -t png -g $(${pkgs.slurp}/bin/slurp) - | wl-copy --type image/png
 
       bindsym --to-code ${modifier}+Space floating toggle
