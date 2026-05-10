@@ -1,34 +1,12 @@
 { config, pkgs, ... }:
-
 {
   home.username = "root";
   home.homeDirectory = "/root";
 
-  programs.helix = {
-    enable = true;
-    settings = {
-      theme = "vim_dark_high_contrast";
-      editor.soft-wrap.enable = true;
-    };
-  };
-
-  programs.git = {
-    enable = true;
-    signing = {
-      key = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
-      signByDefault = true;
-    };
-
-    settings = {
-      gpg = {
-        format = "ssh";
-      };
-      user = {
-        name = "ielxm";
-        email = "git@ielxm.su";
-      };
-    };
-  };
+  imports = [
+    ../packages/helix.nix
+    ../packages/git.nix
+  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -27,8 +27,8 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
 
-	            home-manager.users.root  = ./home-manager/pc/root.nix;
-              home-manager.users.ielxm = ./home-manager/pc/home.nix;
+	            home-manager.users.root  = ./home-manager/users/root.nix;
+              home-manager.users.ielxm = ./home-manager/users/ielxm.nix;
             }
           ];
         };

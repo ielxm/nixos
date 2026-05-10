@@ -2,40 +2,19 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./kernel.nix
+    ./nvidia.nix
     ./network.nix
+    ./libvirt.nix
   ];
 
-  boot.initrd.kernelModules = [ 
-    "vfio_pci"
-    "vfio"
-    "vfio_iommu_type1"
-   ];
-
-  boot.kernelParams = [ 
-    "amd_iommu=on"
-    "vfio-pci.ids=10de:1f0a,10de:10f9"
-    "video=DP-2:1920x1080@60"
-  ];
-
-	services.xserver.videoDrivers = [ "nvidia" ];
-
-	hardware = {
-    graphics = {
-      enable = true;
-    };
-		nvidia = {
-			open = true;
-			modesetting.enable = true;
-		};
-	};
 
   security = {
     polkit = {
       enable = true;
     };
     pam = {
-      #services.greetd.enableGnomeKeyring = true;
-      services.login.enableGnomeKeyring = true;
+      services.greetd.enableGnomeKeyring = true;
     };
   };
 
@@ -62,33 +41,22 @@
     alsa.enable = true;
   };
 
-  services.displayManager.gdm = {
+  services.greetd = {
     enable = true;
+    settings = rec {
+      default_session = initial_session;
+      initial_session = {
+        command = "sway --unsupported-gpu";
+        user = "ielxm";
+      };
+    };
   };
-  services.xserver.displayManager.sessionPackages = [ pkgs.sway ];
-
-  services.gnome.gnome-keyring = {
-    enable = true;
-  };
-
-  #services.greetd = {
-  #  enable = true;
-  #  settings = rec {
-  #    initial_session = {
-  #      command = "sway --unsupported-gpu";
-  #      user = "ielxm";
-  #    };
-  #    default_session = initial_session;
-  #  };
-  #};
-
-  #environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID";
 
   environment.systemPackages = with pkgs; [
     tree
     htop
     yazi
-    gcr
+    dnsmasq
   ];
 
   programs.dconf = {
@@ -102,5 +70,9 @@
         desiredgov = "performance";
       };
     };
+  };
+
+  programs.virt-manager = {
+    enable = true;
   };
 }
