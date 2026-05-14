@@ -9,10 +9,10 @@
         id = 0;
         name = "default";
       };
-      no_vpn = {
+      novpn = {
         isDefault = false;
         id = 1;
-        name = "no_vpn";
+        name = "novpn";
       };
     };
 

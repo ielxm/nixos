@@ -12,7 +12,7 @@
       };
       user = {
         name = "ielxm";
-        email = "git@ielxm.su";
+        email = "ielxm@proton.me";
       };
     };
   };

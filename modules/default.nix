@@ -1,6 +1,17 @@
 { pkgs, lib, ... }:
-
 {
+  imports = [
+    ./kernelParameters.nix
+    ./virtualization.nix
+    ./security.nix
+    ./network.nix
+    ./tty.nix
+    ./systemServices.nix
+    ./systemPrograms.nix
+    ./systemPackages.nix
+    ./systemUsers.nix
+  ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
 
@@ -20,7 +31,6 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
 
   # Environment variables.
   environment.variables = {

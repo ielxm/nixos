@@ -9,10 +9,15 @@
       reload_style_on_change = true;
       enable-bar-scroll = false;
       output = [ "DP-2" ];
-      modules-left = [ "sway/workspaces" "sway/mode" "sway/window" ];
+      modules-left = [ "ext/workspaces" "dwl/window" ];
       modules-right = [ "network#ipv6" "custom/separator"  "network#wifi" "custom/separator" "network#ipv4" "custom/separator" "bluetooth" "custom/separator" "wireplumber" "custom/separator" "memory" "custom/separator" "clock" "custom/separator" "tray" ];
 
-      "sway/window" = {
+      "ext/workspaces" = {
+        ignore-hidden = true;
+        on-click = "activate";
+        sort-by-id = true;
+      };
+      "dwl/window" = {
         max-length = 600;
         tooltip = false;
       };
@@ -23,6 +28,7 @@
       "memory" = {
         interval = 10;
         format = "{avail:<4.1f} GiB";
+        tooltip = false;
       };
       "wireplumber" = {
         format = "VOL: {volume}";
@@ -68,7 +74,7 @@
       };
     };
     style = let
-      fonts = builtins.concatStringsSep ", " config.maid.fonts.monospace;
+      fonts = "JetBrainsMono Nerd Font Mono";
       color.background = "#000000";
       color.foreground = "#FFFFFF";
       color.foreground_workspaces_button = "#A2A6AB";
@@ -95,7 +101,8 @@
       {
         margin: 0 4px;
       }
-      #workspaces
+      #workspaces,
+      #tags
       {
         margin: 0 0px;
       }
