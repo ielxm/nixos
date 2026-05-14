@@ -10,10 +10,10 @@
 
   networking.hostName = "nixos";
 
-  # Disable dhcpcd.
+  # Отключение dhcpcd (его роль на себя берёт systemd-networkd)
   networking.useDHCP = false;
 
-  # Enable systemd-networkd.
+  # Включение systemd-networkd
   systemd.network.enable = true;
 
   systemd.network.networks."10-lan" = {
@@ -32,6 +32,6 @@
     checkReversePath = false;
   };
 
-  # Replace iptables firewall with nftables.
+  # Вместо iptables будет использоваться nftables
   networking.nftables.enable = true;
 }

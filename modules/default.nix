@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./kernelParameters.nix
@@ -16,28 +16,28 @@
   nixpkgs.config.allowUnfree = true;
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.editor = false; # prevent user from entering systemd-boot editor.
+  # Запретить редактирование параметров ядра при загрузке
+  boot.loader.systemd-boot.editor = false;
 
-  # Limit amount of system backups.
+  # Ограничить максимальное количество активных бэкапов в списке Boot Entries
   boot.loader.systemd-boot.configurationLimit = 9;
 
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest; # использовать последнюю версию ядра
 
-  # Set your time zone.
+  # Часовой пояс
   time.timeZone = "Europe/Moscow";
 
-  # Select internationalisation properties.
+  # Локаль
   i18n.defaultLocale = "en_US.UTF-8";
 
-  # Environment variables.
+  # Системные переменные окружения
   environment.variables = {
     EDITOR = "hx";
   };
 
-  # Home Manager workaround to make xdg-desktop-portal work.
+  # Необходимо для корректной работы xdg-desktop-portal, если он установлен посредством Home Manager'а
   environment.pathsToLink = [ "share/applications" "/share/xdg-desktop-portal" ];
 
   # Copy the NixOS configuration file and link it from the resulting system
