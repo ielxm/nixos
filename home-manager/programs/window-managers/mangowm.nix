@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  wallpaperPath = "$HOME/pictures/placeholder.png";
+  wallpaperPath  = "$HOME/pictures/placeholder.png";
 in {
   wayland.windowManager.mango = {
     enable = true;
@@ -33,7 +33,7 @@ in {
       new_is_master = 1;
       
       exec-once = [
-        "${pkgs.swaybg}/bin/swaybg -i \"${wallpaperPath}\""
+        "${pkgs.swaybg}/bin/swaybg -i \"${wallpaperPath}\" -o DP-1"
         "${pkgs.waybar}/bin/waybar"
       ];
       monitorrule = [
