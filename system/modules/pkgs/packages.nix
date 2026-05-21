@@ -4,6 +4,5 @@
     tree
     htop
     yazi
-    dnsmasq
   ];
 }

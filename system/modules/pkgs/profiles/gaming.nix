@@ -1,12 +1,4 @@
 {
-  programs.dconf = {
-    enable = true;
-  };
-
-  programs.virt-manager = {
-    enable = true;
-  };
-
   programs.gamemode = {
     enable = true;
     settings = {

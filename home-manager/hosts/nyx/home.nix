@@ -5,6 +5,8 @@ let
 in {
 
   imports = [
+    inputs.mangowm.hmModules.mango
+
     ../../programs/firefox.nix
     ../../programs/foot.nix
     ../../programs/xdg-user-dirs.nix

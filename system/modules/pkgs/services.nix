@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
-  services.dbus.packages = with pkgs; [
-    gnome-keyring
-    gcr
-  ];
+  services.dbus = {
+    packages = with pkgs; [ gnome-keyring gcr ];
+  };
 
-  services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-keyring = {
+    enable = true;
+  };
 
   services.mullvad-vpn = {
     enable = true;
