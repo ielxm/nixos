@@ -4,5 +4,6 @@
     tree
     htop
     yazi
+    nixd
   ];
 }

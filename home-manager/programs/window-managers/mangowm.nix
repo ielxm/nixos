@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 let
   wallpaperPath  = "$HOME/pictures/placeholder.png";
 in {
@@ -10,7 +10,7 @@ in {
       font = "JetBrainsMono Nerd Font Mono"; # Load 1st font from List.
       modKey = "SUPER";
       terminal = "foot";
-      menu = "${pkgs.rofi}/bin/rofi -show drun";
+      menu = "rofi -show drun";
     in {
       xkb_rules_layout = "us,ru";
       xkb_rules_options = "grp:alt_shift_toggle";
@@ -37,8 +37,8 @@ in {
       new_is_master = 1;
       
       exec-once = [
-        "${pkgs.swaybg}/bin/swaybg -i \"${wallpaperPath}\" -o DP-1"
-        "${pkgs.waybar}/bin/waybar"
+        "swaybg -i \"${wallpaperPath}\""
+        "waybar"
       ];
       monitorrule = [
         "name:^DP-2,width:1920,height:1080,refresh:240,x:0,y:0,vrr:0"

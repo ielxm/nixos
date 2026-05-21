@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ndsl, ... }:
 let
   iconTheme = "Adwaita";
   iconThemePkg = "adwaita-icon-theme";
@@ -7,8 +7,9 @@ in {
     enable = true;
 
     iconTheme = {
-      package     = pkgs.${iconThemePkg};
-      name        = iconTheme;
+
+      package = ndsl.appearance.themes.icons.package;
+      name = ndsl.appearance.themes.icons.name;
     };
   };
 }

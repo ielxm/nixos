@@ -20,8 +20,34 @@
 
           system = "x86_64-linux";
 
+          specialArgs = { inherit inputs; };
+
           modules = [
             ./system/hosts/nyx/hardware-configuration.nix
+
+            ./system/modules/ndsl.nix
+            ({pkgs,...}: {
+              ndsl.hostname="nyx";
+              ndsl.primaryUser="ielxm";
+              ndsl.appearance.themes.icons={
+                name="Adwaita";
+                package=pkgs.adwaita-icon-theme;
+              };
+              ndsl.appearance.fonts={
+                serif={
+                  names=[ "DejaVu Serif" "Noto Serif" ];
+                  packages=[pkgs.dejavu_fonts pkgs.noto-fonts];
+                };
+                sansSerif={
+                  names=[ "DejaVu Sans" "Noto Sans" ];
+                  packages=[pkgs.dejavu_fonts pkgs.noto-fonts];
+                };
+                monospace={
+                  names=[ "JetBrainsMono Nerd Font Mono" ];
+                  packages=[pkgs.nerd-fonts.jetbrains-mono pkgs.nerd-fonts.iosevka pkgs.nerd-fonts.adwaita-mono];
+                };
+              };
+            })
 
             ./system/modules/security.nix
             ./system/modules/network.nix
@@ -47,15 +73,15 @@
             mangowm.nixosModules.mango
 
             home-manager.nixosModules.home-manager
-            {
+            ({config,inputs,...}:{
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-              home-manager.extraSpecialArgs = { inherit inputs; }; # развернуть inputs
-
 	            home-manager.users.root  = ./home-manager/hosts/nyx/root.nix;
               home-manager.users.ielxm = ./home-manager/hosts/nyx/home.nix;
-            }
+
+              home-manager.extraSpecialArgs = { inherit inputs; ndsl = config.ndsl; }; # развернуть inputs
+            })
           ];
         };
 

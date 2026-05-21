@@ -46,12 +46,6 @@ in {
   };
 
   home.packages = with pkgs; [
-    nerd-fonts.adwaita-mono
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.iosevka
-    noto-fonts
-    dejavu_fonts
-
     xdg-utils # xdg-open (for element-desktop)
     fastfetch
 
@@ -61,6 +55,7 @@ in {
     grim
     slurp
     wl-clipboard
+    swaybg
 
     obs-studio
     mullvad-vpn
@@ -76,15 +71,6 @@ in {
     --gtk-version=4
     --enable-features=WaylandWindowDecorations,AllowQt
   '';
-
-  home.file."${config.home.homeDirectory}/.scripts/firefox-novpn.sh" = {
-    text = ''
-      #!/bin/sh
-      mullvad-exclude firefox --new-instance -no-remote --profile "${config.home.homeDirectory}/.mozilla/firefox/novpn"
-    '';
-    force = true;
-    executable = true;
-  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

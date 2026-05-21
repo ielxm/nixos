@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ndsl, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -75,7 +75,7 @@
       };
     };
     style = let
-      fonts = "JetBrainsMono Nerd Font Mono";
+      fonts = builtins.concatStringsSep ", " ndsl.appearance.fonts.monospace.names;
       color.background = "#000000";
       color.foreground = "#FFFFFF";
       color.foreground_workspaces_button = "#A2A6AB";
