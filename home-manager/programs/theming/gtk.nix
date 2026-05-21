@@ -1,8 +1,5 @@
 { ndsl, ... }:
-let
-  iconTheme = "Adwaita";
-  iconThemePkg = "adwaita-icon-theme";
-in {
+{
   gtk = {
     enable = true;
 

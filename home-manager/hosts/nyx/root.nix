@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ndsl, ... }:
 {
   home.username = "root";
   home.homeDirectory = "/root";
@@ -7,7 +7,6 @@
     ../../programs/tui/helix.nix
     ../../programs/tui/git.nix
     ../../programs/tui/openssh.nix
-    ../../programs/tui/fish.nix
   ];
 
   # This value determines the Home Manager release that your

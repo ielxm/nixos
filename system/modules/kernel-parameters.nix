@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   boot.initrd.kernelModules = [
     "vfio_pci"
@@ -8,6 +8,7 @@
 
   boot.kernelParams = [
     "amd_iommu=on"
+  ]++lib.optionals (config.ndsl.hostname=="nyx") [
     "vfio-pci.ids=10de:1f0a,10de:10f9"
   ];
 
@@ -18,7 +19,7 @@
 
   hardware.nvidia = {
     open = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    #package = config.boot.kernelPackages.nvidiaPackages.beta;
     modesetting.enable = true;
     powerManagement.enable = false;
     powerManagement.finegrained = false;

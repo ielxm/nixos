@@ -1,10 +1,10 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   virtualisation.libvirtd = {
     enable = true;
   };
 
-  users.users.ielxm.extraGroups = lib.mkAfter [ "libvirtd" ];
+  users.users.${config.ndsl.primaryUser}.extraGroups = lib.mkAfter [ "libvirtd" ];
 
   imports = [
     ./pkgs/profiles/virtualization.nix

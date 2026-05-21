@@ -1,8 +1,5 @@
-{ config, pkgs, inputs, ... }:
-let
-  iconTheme = "Adwaita";
-  iconThemePkg = "adwaita-icon-theme";
-in {
+{ config, pkgs, inputs, ndsl, ... }:
+{
 
   imports = [
     inputs.mangowm.hmModules.mango
@@ -12,6 +9,7 @@ in {
     ../../programs/xdg-user-dirs.nix
     ../../programs/xdg-desktop-portals.nix
     ../../programs/rofi.nix
+    ../../programs/mullvad-vpn.nix
     ../../programs/waybar.nix
     ../../programs/window-managers/mangowm.nix
     ../../programs/tui/git.nix
@@ -22,19 +20,20 @@ in {
     ../../programs/theming/gtk.nix
     ../../programs/theming/qt.nix
     ../../programs/theming/fontconfig.nix
+    ../../programs/tui/git.nix
+    ../../programs/tui/openssh.nix
+    ../../programs/tui/fish.nix
+    ../../programs/tui/gpg.nix
+    ../../programs/tui/helix.nix
+    ../../programs/tui/fastfetch.nix
+    ../../programs/theming/gtk.nix
+    ../../programs/theming/qt.nix
+    ../../programs/theming/fontconfig.nix
+    ../../programs/theming/icons.nix
   ];
 
-  home.username = "ielxm";
-  home.homeDirectory = "/home/ielxm";
-
-  home.pointerCursor = {
-    package    = pkgs.${iconThemePkg};
-    name       = iconTheme;
-    x11 = {
-      enable = true;
-      defaultCursor = iconTheme;
-    };
-  };
+  home.username = ndsl.primaryUser;
+  home.homeDirectory = "/home/${ndsl.primaryUser}";
 
   home.sessionVariables = {
     QT_QPA_PLATFORM = "Wayland;xcb";
@@ -47,7 +46,6 @@ in {
 
   home.packages = with pkgs; [
     xdg-utils # xdg-open (for element-desktop)
-    fastfetch
 
     obsidian
     discord
@@ -58,7 +56,6 @@ in {
     swaybg
 
     obs-studio
-    mullvad-vpn
     telegram-desktop
     element-desktop
   ];
@@ -71,6 +68,12 @@ in {
     --gtk-version=4
     --enable-features=WaylandWindowDecorations,AllowQt
   '';
+  home.file."${config.home.homeDirectory}/.scripts/firefox-novpn.sh" = {
+    force=true;executable=true;text=''
+      #!/bin/sh
+      mullvad-exclude firefox --new-instance -no-remote --profile "${config.home.homeDirectory}/.mozilla/firefox/novpn"
+    '';
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

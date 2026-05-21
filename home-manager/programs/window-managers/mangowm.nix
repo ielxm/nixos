@@ -1,13 +1,9 @@
-{ config, ... }:
-let
-  wallpaperPath  = "$HOME/pictures/placeholder.png";
-in {
+{
   wayland.windowManager.mango = {
     enable = true;
     systemd.enable = true;
     systemd.xdgAutostart = false;
     settings = let
-      font = "JetBrainsMono Nerd Font Mono"; # Load 1st font from List.
       modKey = "SUPER";
       terminal = "foot";
       menu = "rofi -show drun";
@@ -37,7 +33,7 @@ in {
       new_is_master = 1;
       
       exec-once = [
-        "swaybg -i \"${wallpaperPath}\""
+        "swaybg --mode solid_color --color \"#000000\""
         "waybar"
       ];
       monitorrule = [
