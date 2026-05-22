@@ -1,6 +1,6 @@
 <h1 style="margin-bottom:0;">nixos</h1>
 
-<br>Мой конфиг NixOS, Home Manager и прочих Nix-модулей.</br>
+Мой конфиг NixOS, Home Manager и прочих Nix-модулей.
 
 <h2 style="margin-bottom:0;">Хосты</h2>
 
