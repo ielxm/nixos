@@ -6,6 +6,7 @@
     ./rofi.nix
     ./waybar.nix
     ./vscode.nix
+    ./obsidian.nix
     ./xdg-desktop-portals.nix
     ./xdg-user-dirs.nix
 

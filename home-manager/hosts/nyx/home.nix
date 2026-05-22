@@ -22,7 +22,6 @@
   home.packages = with pkgs; [
     xdg-utils # xdg-open (for element-desktop)
 
-    obsidian
     discord
 
     grim

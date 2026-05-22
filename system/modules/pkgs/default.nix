@@ -4,7 +4,6 @@
     tree
     htop
     yazi
-    nixd
   ];
   imports = [
     ./display-manager.nix
