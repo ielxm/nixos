@@ -1,8 +1,6 @@
-<h2 style="margin-bottom:0;">nixos</h2>
-<sub><b>Автор:</b> Александр Иел[и́кс]м Шо́у (寿)</sub>
+<h1 style="margin-bottom:0;">nixos</h1>
 
-<br>
-Мой конфиг NixOS, Home Manager и прочих Nix-модулей.
+<br>Мой конфиг NixOS, Home Manager и прочих Nix-модулей.</br>
 
 <h2 style="margin-bottom:0;">Хосты</h2>
 
