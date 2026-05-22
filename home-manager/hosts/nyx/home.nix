@@ -3,33 +3,8 @@
 
   imports = [
     inputs.mangowm.hmModules.mango
-
-    ../../programs/firefox.nix
-    ../../programs/foot.nix
-    ../../programs/xdg-user-dirs.nix
-    ../../programs/xdg-desktop-portals.nix
-    ../../programs/rofi.nix
-    ../../programs/mullvad-vpn.nix
-    ../../programs/waybar.nix
     ../../programs/window-managers/mangowm.nix
-    ../../programs/tui/git.nix
-    ../../programs/tui/openssh.nix
-    ../../programs/tui/fish.nix
-    ../../programs/tui/gpg.nix
-    ../../programs/tui/helix.nix
-    ../../programs/theming/gtk.nix
-    ../../programs/theming/qt.nix
-    ../../programs/theming/fontconfig.nix
-    ../../programs/tui/git.nix
-    ../../programs/tui/openssh.nix
-    ../../programs/tui/fish.nix
-    ../../programs/tui/gpg.nix
-    ../../programs/tui/helix.nix
-    ../../programs/tui/fastfetch.nix
-    ../../programs/theming/gtk.nix
-    ../../programs/theming/qt.nix
-    ../../programs/theming/fontconfig.nix
-    ../../programs/theming/icons.nix
+    ../../programs/default-imports.nix    
   ];
 
   home.username = ndsl.primaryUser;
