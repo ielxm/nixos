@@ -10,11 +10,11 @@
     config = {
       mango = {
         default = [ "gtk" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-        "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
-        "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
-        "org.freedesktop.impl.portal.Inhibit" = [ "none" ];
+        "org.freedesktop.impl.portal.Secret"       = [ "gnome-keyring" ];
+        "org.freedesktop.impl.portal.FileChooser"  = [ "gtk" ];
+        "org.freedesktop.impl.portal.Screenshot"   = [ "wlr" ];
+        "org.freedesktop.impl.portal.ScreenCast"   = [ "wlr" ];
+        "org.freedesktop.impl.portal.Inhibit"      = [ "none" ];
       };
     };
   };

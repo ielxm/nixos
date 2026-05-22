@@ -8,9 +8,8 @@
       height = 21;
       reload_style_on_change = true;
       enable-bar-scroll = false;
-      output = [ "DP-2" ];
+      output = [ "DP-2" "eDP-1" ];
       modules-left = [ "ext/workspaces" "dwl/window" ];
-      #modules-right = [ "network#ipv6" "custom/separator"  "network#wifi" "custom/separator" "network#ipv4" "custom/separator" "bluetooth" "custom/separator" "wireplumber" "custom/separator" "memory" "custom/separator" "clock" "custom/separator" "tray" ];
       modules-right = [ "network#wifi" "custom/separator" "network#ipv4" "custom/separator" "bluetooth" "custom/separator" "wireplumber" "custom/separator" "memory" "custom/separator" "clock" "custom/separator" "tray" ];
 
       "ext/workspaces" = {

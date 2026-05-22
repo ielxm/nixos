@@ -25,7 +25,8 @@
           modules = [
             ./system/hosts/nyx/hardware-configuration.nix
 
-            ./system/modules/ndsl.nix
+            ./system/modules/ndsl/default.nix
+
             ({pkgs,...}: {
               ndsl.hostname="nyx";
               ndsl.primaryUser="ielxm";
@@ -49,25 +50,12 @@
               };
             })
 
-            ./system/modules/security.nix
-            ./system/modules/network.nix
-            ./system/modules/nix.nix
-            ./system/modules/home-manager.nix
-            ./system/modules/environment-variables.nix
-            ./system/modules/kernel-parameters.nix
-            ./system/modules/locale.nix
-            ./system/modules/timezone.nix
-            ./system/modules/console.nix
-            ./system/modules/boot.nix
-            ./system/modules/users.nix
+            ./system/modules/default.nix
+            
+            ./system/modules/pkgs/default.nix
 
-            ./system/modules/virtualization.nix
-
-            ./system/modules/pkgs/programs.nix
-            ./system/modules/pkgs/services.nix
-            ./system/modules/pkgs/packages.nix
-
-            ./system/modules/pkgs/profiles/gaming.nix
+            ./system/modules/profiles/virtualization.nix
+            ./system/modules/profiles/gaming.nix
             
             # flakes
             mangowm.nixosModules.mango
