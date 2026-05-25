@@ -7,6 +7,7 @@
     ../../programs/tui/helix.nix
     ../../programs/tui/git.nix
     ../../programs/tui/openssh.nix
+    ../../programs/tui/bash.nix
   ];
 
   # This value determines the Home Manager release that your
