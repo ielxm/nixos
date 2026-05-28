@@ -5,14 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    mangowm = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
-    inputs@{ nixpkgs, mangowm, home-manager, ... }:
+    inputs@{ nixpkgs, home-manager, ... }:
     {
       nixosConfigurations = {
 
@@ -23,9 +19,10 @@
           specialArgs = { inherit inputs; };
 
           modules = [
-            ./system/hosts/nyx/hardware-configuration.nix
 
-            ./system/modules/ndsl/default.nix
+            ./hosts/nyx/hardware-configuration.nix
+
+            ./modules/options/default.nix
 
             ({pkgs,...}: {
               ndsl.hostname="nyx";
@@ -45,20 +42,16 @@
                   packages=[pkgs.dejavu_fonts pkgs.noto-fonts];
                 };
                 monospace={
-                  names=[ "JetBrainsMono Nerd Font Mono" ];
+                  names=[ "AdwaitaMono Nerd Font Mono" ];#[ "JetBrainsMono Nerd Font Mono" ];
                   packages=[pkgs.nerd-fonts.jetbrains-mono pkgs.nerd-fonts.iosevka pkgs.nerd-fonts.adwaita-mono];
                 };
               };
             })
 
-            ./system/modules/default.nix
-            
-            ./system/modules/pkgs/default.nix
-
-            ./system/modules/profiles/virtualization.nix
-            ./system/modules/profiles/gaming.nix
-            
-            mangowm.nixosModules.mango
+            ./modules/core/common/default.nix
+            ./modules/core/common/pkgs/default.nix
+            ./modules/core/common/profiles/gaming.nix            
+            ./modules/core/common/profiles/virtualization.nixi
 
             home-manager.nixosModules.home-manager
             ({config,inputs,...}:{

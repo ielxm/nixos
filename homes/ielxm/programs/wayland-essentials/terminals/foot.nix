@@ -6,7 +6,7 @@
       main = let
         font=builtins.head ndsl.appearance.fonts.monospace.names;
       in {
-        font = "${font}:size=12.0:weight=regular";
+        font = "${font}:size=14.0:weight=regular";
         dpi-aware = "yes";
         term = "xterm-256color";
         shell = "fish";

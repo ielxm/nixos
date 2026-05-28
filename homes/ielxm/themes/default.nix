@@ -2,7 +2,6 @@
   imports = [
     ./gtk.nix
     ./qt.nix
-    ./icons.nix
-    ./fontconfig.nix
+    ./fonts.nix
   ];
 }

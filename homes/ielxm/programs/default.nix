@@ -11,6 +11,7 @@
     ./wayland-essentials/bars/waybar.nix
 
     ./shell/fish.nix
+    ./shell/bash.nix
 
     # cli
     ./cli/fastfetch.nix
