@@ -30,6 +30,7 @@
             ({pkgs,...}: {
               ndsl.hostname="nyx";
               ndsl.primaryUser="ielxm";
+
               ndsl.appearance.themes.icons={
                 name="Adwaita";
                 package=pkgs.adwaita-icon-theme;
@@ -57,7 +58,6 @@
             ./system/modules/profiles/virtualization.nix
             ./system/modules/profiles/gaming.nix
             
-            # flakes
             mangowm.nixosModules.mango
 
             home-manager.nixosModules.home-manager
@@ -65,11 +65,12 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-	            home-manager.users.root  = ./home-manager/hosts/nyx/root.nix;
-              home-manager.users.ielxm = ./home-manager/hosts/nyx/home.nix;
-
-              home-manager.extraSpecialArgs = { inherit inputs; ndsl = config.ndsl; }; # развернуть inputs
+	            home-manager.users.root  = ./homes/ielxm/root.nix;
+              home-manager.users.ielxm = ./homes/ielxm/home.nix;
+              
+              home-manager.extraSpecialArgs = { inherit inputs; ndsl = config.ndsl; };
             })
+          
           ];
         };
 

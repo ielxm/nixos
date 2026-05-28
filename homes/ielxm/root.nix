@@ -4,9 +4,8 @@
   home.homeDirectory = "/root";
 
   imports = [
-    ../../programs/tui/helix.nix
-    ../../programs/tui/git.nix
-    ../../programs/tui/openssh.nix
+    ./packages/minimal.nix
+    ./programs/minimal.nix
   ];
 
   # This value determines the Home Manager release that your

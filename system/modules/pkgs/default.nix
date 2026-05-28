@@ -11,5 +11,6 @@
     ./gnome-keyring.nix
     ./mullvad-vpn.nix
     ./pipewire.nix
+    ./gvfs.nix
   ];
 }

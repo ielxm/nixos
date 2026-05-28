@@ -2,37 +2,20 @@
 {
 
   imports = [
-    inputs.mangowm.hmModules.mango
-    ../../programs/window-managers/mangowm.nix
-    ../../programs/default-imports.nix    
+    ./packages/default.nix
+    ./programs/default.nix    
   ];
 
-  home.username = ndsl.primaryUser;
-  home.homeDirectory = "/home/${ndsl.primaryUser}";
+  home.username = "ielxm";
+  home.homeDirectory = "/home/ielxm";
 
   home.sessionVariables = {
-    QT_QPA_PLATFORM = "Wayland;xcb";
+    QT_QPA_PLATFORM = "Wayland";
     QT_QPA_PLATFORMTHEME = "xdgdesktopportal";
-    SDL_VIDEODRIVER = "wayland";
-    LIBVA_DRIVER_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    SDL_VIDEODRIVER = "wayland";
   };
 
-  home.packages = with pkgs; [
-    xdg-utils # xdg-open (for element-desktop)
-
-    discord
-
-    grim
-    slurp
-    wl-clipboard
-    swaybg
-
-    obs-studio
-    telegram-desktop
-    element-desktop
-  ];
 
   # Workaround to make Element and other Electron applications use GNOME Keyring
   # https://discourse.nixos.org/t/element-desktop-no-longer-working-with-nixos-25-05-on-a-minimal-desktop-i3-or-xterm-due-to-unsupported-keyring/69731/3

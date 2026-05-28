@@ -3,20 +3,33 @@
     enable = true;
     languagePacks = [ "en-US" ];
 
-    profiles = {
+    profiles = let
+      settings={
+        "gfx.webrender.compositor"=true;
+        "gfx.webrender.compositor.force-enabled"=true;
+        "browser.urlbar.suggest.recentsearches"=false;
+        "browser.contentblocking.category"="strict";
+        "browser.uidensity"=1;
+        "browser.compactmode.show"=true;
+      };
+    in {
       default = {
         isDefault = true;
         id = 0;
         name = "default";
+        settings=settings;
+        
       };
       novpn = {
         isDefault = false;
         id = 1;
         name = "novpn";
+        settings=settings;
       };
     };
 
     policies = {
+      # Disable useless Firefox features
       DisablePocket                 = true;
       DisableTelemetry              = true;
       DisableMasterPasswordCreation = true;
@@ -27,21 +40,25 @@
       DisableSetDesktopBackground   = true;
       DisableFeedbackCommands       = true;
       DisableForgetButton           = true;
-      OfferToSaveLogins             = false;
+
       HardwareAcceleration          = true;
       DontCheckDefaultBrowser       = true;
-      PromptForDownloadLocation     = true;
-      CaptivePortal                 = false;
-      AutofillAddressEnabled        = false;
-      AutofillCreditCardEnabled     = false;
-      FirefoxHome.SponsoredTopSites = false;
-      AIControls.Default.Value      = "blocked";
-      #DisplayMenuBar                = "never";
+
       BrowserDataBackup = {
         AllowBackup                 = false;
         AllowRestore                = false;
       };
 
+      FirefoxHome.SponsoredTopSites = false;
+      AutofillAddressEnabled        = false;
+      AutofillCreditCardEnabled     = false;
+      PromptForDownloadLocation     = true;
+      OfferToSaveLogins             = false;
+
+      # Disable AI
+      AIControls.Default.Value      = "blocked";
+
+      # Disable Auto Updates
       AppAutoUpdate                 = false;
       BackgroundAppUpdate           = false;
             

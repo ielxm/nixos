@@ -6,11 +6,10 @@
       main = let
         font=builtins.head ndsl.appearance.fonts.monospace.names;
       in {
-        font = "${font}:size=12.0";
+        font = "${font}:size=12.0:weight=regular";
         dpi-aware = "yes";
         term = "xterm-256color";
         shell = "fish";
-        #pad = "4x4";
       };
       colors = {
         cursor="111111 cccccc";

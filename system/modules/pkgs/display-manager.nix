@@ -5,7 +5,7 @@
     settings = rec {
       default_session = initial_session;
       initial_session = {
-        command = "mango";
+        command = "sway --unsupported-gpu";
         user = config.ndsl.primaryUser;
       };
     };
