@@ -9,15 +9,10 @@
       reload_style_on_change = true;
       enable-bar-scroll = false;
       output = [ "DP-2" "eDP-1" ];
-      modules-left = [ "ext/workspaces" "dwl/window" ];
+      modules-left = [ "sway/workspaces" "sway/window" ];
       modules-right = [ "network#wifi" "custom/separator" "network#ipv4" "custom/separator" "bluetooth" "custom/separator" "wireplumber" "custom/separator" "memory" "custom/separator" "clock" "custom/separator" "tray" ];
 
-      "ext/workspaces" = {
-        ignore-hidden = true;
-        on-click = "activate";
-        sort-by-id = true;
-      };
-      "dwl/window" = {
+      "sway/window" = {
         max-length = 600;
         tooltip = false;
       };

@@ -6,9 +6,9 @@
     ./gui/mullvad-vpn.nix
 
     # wayland-essentials
-    ./wayland-essentials/foot.nix
-    ./wayland-essentials/rofi.nix
-    ./wayland-essentials/waybar.nix
+    ./wayland-essentials/terminals/foot.nix
+    ./wayland-essentials/app-launchers/fuzzel.nix
+    ./wayland-essentials/bars/waybar.nix
 
     # xdg
     ./xdg/xdg-desktop-portals.nix

@@ -8,8 +8,10 @@ in {
     config = {
       modifier = "Mod4";
       terminal = "foot";
-      menu="rofi -show drun";
-      #menu = "bemenu-run -H 23 -b -i --fn '${font} 11.0' --fb '#000000' --hb '#000000' --tb '#000000'";
+      #menu="rofi -show drun";
+      menu="fuzzel";
+
+
       bindkeysToCode = true;
 
       keybindings = let
@@ -27,7 +29,8 @@ in {
         "${mod}+x" = "exec Telegram";
         "${mod}+Shift+x" = "exec discord";
 
-        "${mod}+Shift+s" = "exec grim -t png -g $(slurp) - | wl-copy --type image/png";
+        "${mod}+Shift+s" = "exec grim -t png -g \"$(slurp)\" - | wl-copy --type image/png";
+        "Print" = "exec grim - | wl-copy --type image/png";
 
         "${mod}+q" = "focus left";
         "${mod}+e" = "focus right";
@@ -50,6 +53,9 @@ in {
         "${mod}+8" = "workspace 8";
         "${mod}+9" = "workspace 9";
         "${mod}+0" = "workspace 10";
+        "${mod}+F1" = "workspace 11";
+        "${mod}+F2" = "workspace 12";
+        "${mod}+F3" = "workspace 13";
 
         "${mod}+Shift+1" = "move container to workspace number 1";
         "${mod}+Shift+2" = "move container to workspace number 2";
@@ -61,6 +67,9 @@ in {
         "${mod}+Shift+8" = "move container to workspace number 8";
         "${mod}+Shift+9" = "move container to workspace number 9";
         "${mod}+Shift+0" = "move container to workspace number 10";
+        "${mod}+Shift+F1" = "move container to workspace number 11";
+        "${mod}+Shift+F2" = "move container to workspace number 12";
+        "${mod}+Shift+F3" = "move container to workspace number 13";
       };
 
       modes = {
@@ -85,7 +94,18 @@ in {
       bars = [{
         command = "waybar";
       }];
-      output = {};
+      output = {
+        DP-1={
+          mode = "3440x1440@165Hz";
+          scale = "1.35";
+          pos = "1920,0";
+        };
+        DP-2={
+          mode = "1920x1080@240Hz";
+          scale = "1.0";
+          pos = "0,0";
+        };
+      };
     };
     extraConfig = ''
       workspace 1 output DP-2
