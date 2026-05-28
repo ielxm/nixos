@@ -10,23 +10,15 @@
     ./wayland-essentials/app-launchers/fuzzel.nix
     ./wayland-essentials/bars/waybar.nix
 
-    # xdg
-    ./xdg/xdg-desktop-portals.nix
-    ./xdg/xdg-user-dirs.nix
+    ./shell/fish.nix
 
     # cli
     ./cli/fastfetch.nix
-    ./cli/fish.nix
     ./cli/git.nix
     ./cli/gpg.nix
     ./cli/helix.nix
     ./cli/openssh.nix
-
-    # theming
-    ./theming/fontconfig.nix
-    ./theming/gtk.nix
-    ./theming/icons.nix
-    ./theming/qt.nix
+    ./cli/yazi.nix
 
     ./window-managers/sway.nix
   ];

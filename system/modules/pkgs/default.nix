@@ -3,7 +3,6 @@
   environment.systemPackages = with pkgs; [
     tree
     htop
-    yazi
   ];
   imports = [
     ./display-manager.nix

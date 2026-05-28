@@ -2,11 +2,11 @@
 {
 
   imports = [
-    ./etc/environment/variables/default.nix
-    ./etc/scripts/default.nix
-    ./etc/workarounds/default.nix
+    ./misc/default.nix
     ./packages/default.nix
     ./programs/default.nix    
+    ./services/default.nix
+    ./themes/default.nix
   ];
 
   home.username = "ielxm";
