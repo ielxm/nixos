@@ -1,7 +1,8 @@
 { home, pkgs, ... }:
 {
   imports = [
-    ./fonts.nix
+    ./parts/fonts.nix
+    ./common.nix
   ];
   home.packages = with pkgs; [
     xdg-utils # xdg-open (for element-desktop)
