@@ -10,6 +10,8 @@
   outputs =
     inputs@{ nixpkgs, home-manager, ... }:
     {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-tree;
+
       nixosConfigurations = {
 
         nyx = nixpkgs.lib.nixosSystem {
@@ -24,29 +26,48 @@
 
             ./modules/options/default.nix
 
-            ({pkgs,...}: {
-              ndsl.hostname="nyx";
-              ndsl.primaryUser="ielxm";
+            (
+              { pkgs, ... }:
+              {
+                ndsl.hostname = "nyx";
+                ndsl.primaryUser = "ielxm";
 
-              ndsl.appearance.themes.icons={
-                name="Adwaita";
-                package=pkgs.adwaita-icon-theme;
-              };
-              ndsl.appearance.fonts={
-                serif={
-                  names=[ "DejaVu Serif" "Noto Serif" ];
-                  packages=[pkgs.dejavu_fonts pkgs.noto-fonts];
+                ndsl.appearance.themes.icons = {
+                  name = "Adwaita";
+                  package = pkgs.adwaita-icon-theme;
                 };
-                sansSerif={
-                  names=[ "DejaVu Sans" "Noto Sans" ];
-                  packages=[pkgs.dejavu_fonts pkgs.noto-fonts];
+                ndsl.appearance.fonts = {
+                  serif = {
+                    names = [
+                      "DejaVu Serif"
+                      "Noto Serif"
+                    ];
+                    packages = [
+                      pkgs.dejavu_fonts
+                      pkgs.noto-fonts
+                    ];
+                  };
+                  sansSerif = {
+                    names = [
+                      "DejaVu Sans"
+                      "Noto Sans"
+                    ];
+                    packages = [
+                      pkgs.dejavu_fonts
+                      pkgs.noto-fonts
+                    ];
+                  };
+                  monospace = {
+                    names = [ "AdwaitaMono Nerd Font Mono" ]; # [ "JetBrainsMono Nerd Font Mono" ];
+                    packages = [
+                      pkgs.nerd-fonts.jetbrains-mono
+                      pkgs.nerd-fonts.iosevka
+                      pkgs.nerd-fonts.adwaita-mono
+                    ];
+                  };
                 };
-                monospace={
-                  names=[ "AdwaitaMono Nerd Font Mono" ];#[ "JetBrainsMono Nerd Font Mono" ];
-                  packages=[pkgs.nerd-fonts.jetbrains-mono pkgs.nerd-fonts.iosevka pkgs.nerd-fonts.adwaita-mono];
-                };
-              };
-            })
+              }
+            )
 
             ./modules/core/common/default.nix
             ./modules/core/common/pkgs/default.nix
@@ -54,16 +75,22 @@
             ./modules/core/profiles/virtualization.nix
 
             home-manager.nixosModules.home-manager
-            ({config,inputs,...}:{
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+            (
+              { config, inputs, ... }:
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
 
-	            home-manager.users.root  = ./homes/ielxm/root.nix;
-              home-manager.users.ielxm = ./homes/ielxm/home.nix;
-              
-              home-manager.extraSpecialArgs = { inherit inputs; ndsl = config.ndsl; };
-            })
-          
+                home-manager.users.root = ./homes/ielxm/root.nix;
+                home-manager.users.ielxm = ./homes/ielxm/home.nix;
+
+                home-manager.extraSpecialArgs = {
+                  inherit inputs;
+                  ndsl = config.ndsl;
+                };
+              }
+            )
+
           ];
         };
 

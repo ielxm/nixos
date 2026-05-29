@@ -27,17 +27,19 @@
 
       language-server.nixd = {
         args = [ "--semantic-tokens=true" ];
-        config.nixd = let
-          myFlake = "(builtins.getFlake (builtins.toString /etc/nixos))";
-          configurationName = ndsl.hostname;
-          nixosOptions = "${myFlake}.nixosConfigurations.${configurationName}.options";
-        in {
-          nixpkgs.expr = "import ${myFlake}.inputs.nixpkgs { }";
-          options = {
-            nixos.expr = nixosOptions;
-            home-manager.expr = "${nixosOptions}.home-manager.users.type.getSubOptions []";
+        config.nixd =
+          let
+            myFlake = "(builtins.getFlake (builtins.toString /etc/nixos))";
+            configurationName = ndsl.hostname;
+            nixosOptions = "${myFlake}.nixosConfigurations.${configurationName}.options";
+          in
+          {
+            nixpkgs.expr = "import ${myFlake}.inputs.nixpkgs { }";
+            options = {
+              nixos.expr = nixosOptions;
+              home-manager.expr = "${nixosOptions}.home-manager.users.type.getSubOptions []";
+            };
           };
-        };
       };
 
     };

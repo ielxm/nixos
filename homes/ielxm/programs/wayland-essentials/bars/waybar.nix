@@ -8,9 +8,29 @@
       height = 21;
       reload_style_on_change = true;
       enable-bar-scroll = false;
-      output = [ "DP-2" "eDP-1" ];
-      modules-left = [ "sway/workspaces" "sway/window" ];
-      modules-right = [ "network#wifi" "custom/separator" "network#ipv4" "custom/separator" "bluetooth" "custom/separator" "wireplumber" "custom/separator" "memory" "custom/separator" "clock" "custom/separator" "tray" ];
+      output = [
+        "DP-2"
+        "eDP-1"
+      ];
+      modules-left = [
+        "sway/workspaces"
+        "sway/window"
+      ];
+      modules-right = [
+        "network#wifi"
+        "custom/separator"
+        "network#ipv4"
+        "custom/separator"
+        "bluetooth"
+        "custom/separator"
+        "wireplumber"
+        "custom/separator"
+        "memory"
+        "custom/separator"
+        "clock"
+        "custom/separator"
+        "tray"
+      ];
 
       "sway/window" = {
         max-length = 600;
@@ -68,76 +88,78 @@
         tooltip = false;
       };
     };
-    style = let
-      fonts = builtins.concatStringsSep ", " ndsl.appearance.fonts.monospace.names;
-      color.background = "#000000";
-      color.foreground = "#FFFFFF";
-      color.foreground_workspaces_button = "#A2A6AB";
-      color.foreground_separator = "#ADABB0";
-      color.foreground_network = "#00FF00";
-      color.foreground_network_wifi = "#FF0000";
-    in ''
-      *
-      {
-        font-family: ${fonts};
-        font-size: 14.0px;
-      }
-      window
-      {
-        border: none;
-        border-radius: 0px;
-        color: ${color.foreground};
-      }
-      window#waybar
-      {
-        background: ${color.background};
-      }
-      #window
-      {
-        margin: 0 4px;
-      }
-      #workspaces,
-      #tags
-      {
-        margin: 0 0px;
-      }
-      #workspaces button
-      {
-        padding: 1px;
-        margin: 0px;
-        color: ${color.foreground_workspaces_button};
-        border: none;
-      }
-      #workspaces button:hover
-      {
-        background: none;
-        box-shadow: inherit;
-        text-shadow: inherit;
-      }
-      #workspaces button.visible,
-      #workspaces button.active
-      {
-        color: ${color.foreground};
-      }
-      #network
-      {
-        color: ${color.foreground_network};
-      }
-      #network.wifi
-      {
-        color: ${color.foreground_network_wifi};
-      }
-      #tray menu
-      {
-        background: ${color.background};
-        color: ${color.foreground};
-        padding: 1px;
-      }
-      #custom-separator
-      {
-        margin: 0 4px;
-        color: ${color.foreground_separator};
-      }
-    '';
+    style =
+      let
+        fonts = builtins.concatStringsSep ", " ndsl.appearance.fonts.monospace.names;
+        color.background = "#000000";
+        color.foreground = "#FFFFFF";
+        color.foreground_workspaces_button = "#A2A6AB";
+        color.foreground_separator = "#ADABB0";
+        color.foreground_network = "#00FF00";
+        color.foreground_network_wifi = "#FF0000";
+      in
+      ''
+        *
+        {
+          font-family: ${fonts};
+          font-size: 14.0px;
+        }
+        window
+        {
+          border: none;
+          border-radius: 0px;
+          color: ${color.foreground};
+        }
+        window#waybar
+        {
+          background: ${color.background};
+        }
+        #window
+        {
+          margin: 0 4px;
+        }
+        #workspaces,
+        #tags
+        {
+          margin: 0 0px;
+        }
+        #workspaces button
+        {
+          padding: 1px;
+          margin: 0px;
+          color: ${color.foreground_workspaces_button};
+          border: none;
+        }
+        #workspaces button:hover
+        {
+          background: none;
+          box-shadow: inherit;
+          text-shadow: inherit;
+        }
+        #workspaces button.visible,
+        #workspaces button.active
+        {
+          color: ${color.foreground};
+        }
+        #network
+        {
+          color: ${color.foreground_network};
+        }
+        #network.wifi
+        {
+          color: ${color.foreground_network_wifi};
+        }
+        #tray menu
+        {
+          background: ${color.background};
+          color: ${color.foreground};
+          padding: 1px;
+        }
+        #custom-separator
+        {
+          margin: 0 4px;
+          color: ${color.foreground_separator};
+        }
+      '';
   };
 }

@@ -11,7 +11,7 @@
       fi
 
       HOSTNAME_COLOR="\[\e[0;35m\]"
-      
+
       PS1="$USER_COLOR\u\[\e[0m\] at $HOSTNAME_COLOR\h\[\e[0m\] in $CDIR_COLOR\w\[\e[0m\]\n↪ "
 
     '';

@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   virtualisation.libvirtd = {
     enable = true;
@@ -22,7 +27,8 @@
 
   boot.kernelParams = [
     "amd_iommu=on"
-  ]++lib.optionals (config.ndsl.hostname=="nyx") [
+  ]
+  ++ lib.optionals (config.ndsl.hostname == "nyx") [
     "vfio-pci.ids=10de:1f0a,10de:10f9"
   ];
 }

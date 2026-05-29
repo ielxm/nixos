@@ -3,5 +3,5 @@
   imports = [
     ./common.nix
   ];
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [ ];
 }

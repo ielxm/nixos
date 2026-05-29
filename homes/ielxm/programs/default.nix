@@ -1,5 +1,5 @@
 {
-  imports=[
+  imports = [
     # gui
     ./gui/firefox.nix
     ./gui/vscode.nix

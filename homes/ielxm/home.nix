@@ -1,10 +1,16 @@
-{ config, pkgs, inputs, ndsl, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ndsl,
+  ...
+}:
 {
 
   imports = [
     ./misc/default.nix
     ./packages/default.nix
-    ./programs/default.nix    
+    ./programs/default.nix
     ./services/default.nix
     ./themes/default.nix
   ];

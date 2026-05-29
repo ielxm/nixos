@@ -1,16 +1,15 @@
 {
   wayland.windowManager.hyprland = {
-    enable = true;    
+    enable = true;
     settings = {
       decoration = {
         shadow_offset = "0 5";
         "col.shadow" = "rgba(00000099)";
       };
-  
+
       "$mod" = "SUPER";
       "$browser" = "firefox";
       "$terminal" = "foot";
-    
 
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -44,18 +43,20 @@
         "$mod CTRL, P, pin"
 
         "$mod, D, togglespecialworkspace, magic"
-        "$mod SHIFT, D, movetoworkspacesilent, special:magic"      
+        "$mod SHIFT, D, movetoworkspacesilent, special:magic"
       ]
-      ++ (
-        builtins.concatLists (builtins.genList (i:
-            let ws=i+1;
-            in [
-              "$mod, code:1${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-        9)    
-      );
+      ++ (builtins.concatLists (
+        builtins.genList (
+          i:
+          let
+            ws = i + 1;
+          in
+          [
+            "$mod, code:1${toString i}, workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+          ]
+        ) 9
+      ));
     };
   };
 }
