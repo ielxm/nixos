@@ -50,8 +50,8 @@
 
             ./modules/core/common/default.nix
             ./modules/core/common/pkgs/default.nix
-            ./modules/core/common/profiles/gaming.nix            
-            ./modules/core/common/profiles/virtualization.nixi
+            ./modules/core/profiles/gaming.nix
+            ./modules/core/profiles/virtualization.nix
 
             home-manager.nixosModules.home-manager
             ({config,inputs,...}:{
