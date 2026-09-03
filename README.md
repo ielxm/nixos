@@ -1,3 +1,4 @@
 # ielxm's NixOS Configuration
 
-Огромное, гигантское спасибо NotAShelf за его *превосходный* [конфиг NixOS](https://github.com/NotAShelf/nyx), во многом послуживший *источником вдохновения*.
+Мой конфиг NixOS, Home Manager и прочих Nix-модулей.
+<br>В качестве источника вдохновения в основном использовалась [конфигурация NixOS от NotAShelf](https://github.com/NotAShelf/nyx/).
